@@ -1,0 +1,14 @@
+{
+  "name": "fengshui-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "风水咨询网站（首页介绍 + 在线登记 + SQLite 数据库 + 管理后台）",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}
+

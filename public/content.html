@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网站信息管理 · 昭荣书院</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="/">
+        <span class="seal" id="brandSeal">昭</span>
+        <span class="brand-logo hidden" id="brandLogoWrap"><img id="brandLogo" src="" alt="网站 Logo"></span>
+        <span><span id="siteBrandName">昭荣书院</span><small>网站信息管理</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">返回首页</a>
+        <a href="/admin.html">登记管理</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="form-page">
+    <div class="wrap">
+      <div class="login-box hidden" id="loginBox">
+        <h1>管理后台登录</h1>
+        <p class="muted">请输入管理密码以修改网站信息（默认 admin888）</p>
+        <input id="password" type="password" placeholder="管理密码" autocomplete="current-password">
+        <button class="btn btn-primary" id="loginBtn" type="button">登 录</button>
+      </div>
+
+      <div class="form-card hidden" id="contentPanel">
+        <h1>网站信息管理</h1>
+        <p class="lead">修改后点击保存，首页的文字与联系方式会立即更新。</p>
+        <form id="contentForm">
+          <div class="form-grid">
+            <div class="field full">
+              <label>网站 Logo（支持 PNG / JPG / WEBP / GIF / ICO）</label>
+              <div class="logo-editor">
+                <img id="logoPreview" class="hidden" alt="Logo 预览">
+                <input id="logoFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/x-icon">
+                <button class="btn btn-danger btn-sm" id="removeLogoBtn" type="button">移除 Logo</button>
+              </div>
+            </div>
+            <div class="field full">
+              <label>首页大图（上传后替换右侧旋转八卦图，支持 PNG / JPG / WEBP / GIF / ICO）</label>
+              <div class="logo-editor">
+                <img id="heroPreview" class="hidden" alt="首页大图预览">
+                <input id="heroFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/x-icon">
+                <button class="btn btn-danger btn-sm" id="removeHeroBtn" type="button">移除首页大图</button>
+              </div>
+            </div>
+            <div class="field full">
+              <label>网站名称</label>
+              <input name="site_name" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>网站标题（浏览器标签页显示）</label>
+              <input name="site_title" type="text" maxlength="100">
+            </div>
+            <div class="field">
+              <label>左上角印章文字</label>
+              <input name="brand_seal" type="text" maxlength="6">
+            </div>
+            <div class="field">
+              <label>名称下方小字</label>
+              <input name="brand_tagline" type="text" maxlength="50">
+            </div>
+            <div class="field">
+              <label>首页大标题 · 第一行</label>
+              <input name="hero_line1" type="text" maxlength="50">
+            </div>
+            <div class="field">
+              <label>首页大标题 · 第二行（红色强调）</label>
+              <input name="hero_line2" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>首页主标语（副标题）</label>
+              <textarea name="hero_sub" maxlength="300"></textarea>
+            </div>
+
+            <h3 class="form-subhead">顶部导航名称</h3>
+            <div class="field">
+              <label>导航 · 首页</label>
+              <input name="nav_home" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>导航 · 网站介绍</label>
+              <input name="nav_intro" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>导航 · 服务项目</label>
+              <input name="nav_services" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>导航 · 咨询流程</label>
+              <input name="nav_flow" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>导航 · 联系我们</label>
+              <input name="nav_contact" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>导航 · 在线登记按钮</label>
+              <input name="nav_register" type="text" maxlength="20">
+            </div>
+
+            <h3 class="form-subhead">网站介绍板块</h3>
+            <div class="field">
+              <label>板块小标签（英文）</label>
+              <input name="intro_kicker" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>板块标题</label>
+              <input name="intro_title" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>板块副标题</label>
+              <input name="intro_sub" type="text" maxlength="200">
+            </div>
+            <div class="field">
+              <label>关于我们 · 卡片标题</label>
+              <input name="about_title" type="text" maxlength="50">
+            </div>
+            <div class="field">
+              <label>服务范围 · 卡片标题</label>
+              <input name="services_intro_title" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>关于我们 · 第一段</label>
+              <textarea name="about_1" maxlength="500"></textarea>
+            </div>
+            <div class="field full">
+              <label>关于我们 · 第二段</label>
+              <textarea name="about_2" maxlength="500"></textarea>
+            </div>
+            <div class="field full">
+              <label>服务范围（每行一项）</label>
+              <textarea name="services" maxlength="2000"></textarea>
+            </div>
+
+            <h3 class="form-subhead">服务项目板块</h3>
+            <div class="field">
+              <label>板块小标签（英文）</label>
+              <input name="services_kicker" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>板块标题</label>
+              <input name="services_title" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>板块副标题</label>
+              <input name="services_sub" type="text" maxlength="200">
+            </div>
+            <h3 class="form-subhead">服务项目列表（可添加、修改、删除、上传图标）</h3>
+            <div class="field full">
+              <div id="itemsManager"></div>
+            </div>
+            <div class="field full">
+              <label>新增项目名称</label>
+              <input id="newItemTitle" type="text" maxlength="100" placeholder="例如：阴宅风水">
+            </div>
+            <div class="field full">
+              <label>新增项目介绍</label>
+              <input id="newItemDesc" type="text" maxlength="500" placeholder="一句话介绍这个项目">
+            </div>
+            <div class="field">
+              <label>新增项目图标（emoji 文字，也可不填）</label>
+              <input id="newItemIcon" type="text" maxlength="20" placeholder="例如：🏠">
+            </div>
+            <div class="field">
+              <label>新增项目</label>
+              <button class="btn btn-ghost" id="addItemBtn" type="button">添加项目</button>
+            </div>
+
+            <h3 class="form-subhead">咨询流程板块</h3>
+            <div class="field">
+              <label>板块小标签（英文）</label>
+              <input name="flow_kicker" type="text" maxlength="20">
+            </div>
+            <div class="field">
+              <label>板块标题</label>
+              <input name="flow_title" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>板块副标题</label>
+              <input name="flow_sub" type="text" maxlength="200">
+            </div>
+
+            <h3 class="form-subhead">底部行动区</h3>
+            <div class="field full">
+              <label>行动区标题</label>
+              <input name="cta_title" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>行动区说明</label>
+              <input name="cta_sub" type="text" maxlength="200">
+            </div>
+            <div class="field full">
+              <label>行动按钮文字</label>
+              <input name="cta_button" type="text" maxlength="30">
+            </div>
+
+            <h3 class="form-subhead">页脚与联系方式</h3>
+            <div class="field full">
+              <label>页脚简介</label>
+              <textarea name="footer_about" maxlength="500"></textarea>
+            </div>
+            <div class="field">
+              <label>页脚 · 服务项目标题</label>
+              <input name="footer_services_title" type="text" maxlength="50">
+            </div>
+            <div class="field">
+              <label>页脚 · 联系我们标题</label>
+              <input name="footer_contact_title" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>页脚版权文字</label>
+              <input name="copyright_text" type="text" maxlength="200">
+            </div>
+            <div class="field">
+              <label>联系电话</label>
+              <input name="contact_phone" type="text" maxlength="50">
+            </div>
+            <div class="field">
+              <label>微信号</label>
+              <input name="contact_wechat" type="text" maxlength="50">
+            </div>
+            <div class="field full">
+              <label>电子邮箱</label>
+              <input name="contact_email" type="text" maxlength="100">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">保存修改</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="/js/site.js"></script>
+  <script src="/js/content.js"></script>
+</body>
+</html>
+

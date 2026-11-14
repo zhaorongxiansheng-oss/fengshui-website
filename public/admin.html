@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登记管理 · 昭荣书院</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="/">
+        <span class="seal" id="brandSeal">昭</span>
+        <span class="brand-logo hidden" id="brandLogoWrap"><img id="brandLogo" src="" alt="网站 Logo"></span>
+        <span><span id="siteBrandName">昭荣书院</span><small>登记管理后台</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">返回首页</a>
+        <a class="cta" href="/register.html">在线登记</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="form-page">
+    <div class="wrap">
+      <div class="login-box hidden" id="loginBox">
+        <h1>管理后台登录</h1>
+        <p class="muted">请输入管理密码以查看登记信息（默认 admin888）</p>
+        <input id="password" type="password" placeholder="管理密码" autocomplete="current-password">
+        <button class="btn btn-primary" id="loginBtn" type="button">登 录</button>
+      </div>
+
+      <div class="hidden" id="adminPanel">
+        <div class="section-head">
+          <div class="kicker">ADMIN</div>
+          <h1>登记信息管理</h1>
+          <p>所有登记信息均安全存储于本站数据库</p>
+        </div>
+        <div class="admin-toolbar">
+          <input id="searchInput" type="text" placeholder="搜索姓名 / 电话 / 微信 / 类型">
+          <select id="statusFilter">
+            <option value="">全部状态</option>
+            <option value="待处理">待处理</option>
+            <option value="已联系">已联系</option>
+            <option value="已完成">已完成</option>
+          </select>
+          <button class="btn btn-ghost" id="refreshBtn" type="button">刷新</button>
+          <a class="btn btn-ghost" href="/content.html">网站信息管理</a>
+          <button class="btn btn-ghost" id="logoutBtn" type="button">退出登录</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>出生信息</th>
+                <th>联系方式</th>
+                <th>城市</th>
+                <th>类型</th>
+                <th>咨询事项</th>
+                <th>登记时间</th>
+                <th>状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <p class="hint" id="emptyHint">暂无登记信息</p>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="/js/site.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>
+

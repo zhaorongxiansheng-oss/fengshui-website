@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线登记 · 昭荣书院</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="/">
+        <span class="seal" id="brandSeal">昭</span>
+        <span class="brand-logo hidden" id="brandLogoWrap"><img id="brandLogo" src="" alt="网站 Logo"></span>
+        <span><span id="siteBrandName">昭荣书院</span><small id="brandTagline">风水 · 堪舆 · 命理</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">返回首页</a>
+        <a class="cta" href="/admin.html">管理后台</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="form-page">
+    <div class="wrap">
+      <div class="form-card">
+        <h1>风水咨询在线登记</h1>
+        <p class="lead">请如实填写以下信息，提交后我们将尽快与您联系。带 <span style="color: var(--cinnabar);">*</span> 为必填项。</p>
+        <form id="registerForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label>姓名 <span class="req">*</span></label>
+              <input name="name" type="text" maxlength="50" placeholder="您的称呼" required>
+            </div>
+            <div class="field">
+              <label>性别</label>
+              <select name="gender">
+                <option value="">请选择</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>出生日期</label>
+              <input name="birth_date" type="date">
+            </div>
+            <div class="field">
+              <label>出生时间</label>
+              <input name="birth_time" type="time">
+            </div>
+            <div class="field">
+              <label>联系电话</label>
+              <input name="phone" type="tel" maxlength="30" placeholder="手机或座机">
+            </div>
+            <div class="field">
+              <label>微信号</label>
+              <input name="wechat" type="text" maxlength="50" placeholder="便于微信沟通">
+            </div>
+            <div class="field">
+              <label>电子邮箱</label>
+              <input name="email" type="email" maxlength="100" placeholder="name@example.com">
+            </div>
+            <div class="field">
+              <label>所在城市</label>
+              <input name="city" type="text" maxlength="50" placeholder="例如：上海">
+            </div>
+            <div class="field full">
+              <label>常住地址</label>
+              <input name="address" type="text" maxlength="200" placeholder="街道、小区等（可选）">
+            </div>
+            <div class="field full">
+              <label>咨询类型</label>
+              <select name="category">
+                <option value="">请选择咨询类型</option>
+                <option>阳宅风水</option>
+                <option>商业风水</option>
+                <option>八字命理</option>
+                <option>择日吉时</option>
+                <option>起名改名</option>
+                <option>风水课程</option>
+                <option>其他</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label>咨询事项说明</label>
+              <textarea name="message" maxlength="1000" placeholder="请简要描述您想咨询的问题、当前情况或关注点……"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">提交登记</button>
+          </div>
+          <p class="hint">提交即表示您同意本站为咨询服务目的保存并使用以上信息。</p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="/js/site.js"></script>
+  <script src="/js/register.js"></script>
+</body>
+</html>
+
