@@ -543,6 +543,12 @@ footer li {
   font-size: 17px;
 }
 
+.password-panel {
+  margin-top: 26px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

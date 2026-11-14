@@ -97,9 +97,10 @@ const DEFAULT_SETTINGS = {
   contact_wechat: "zhaorongshuyuan（示例）",
   contact_email: "hello@example.com（示例）",
   copyright_text: "© 2026 昭荣书院 · 风水咨询网站",
+  admin_password_hash: "",
 };
 const EDITABLE_SETTINGS = Object.keys(DEFAULT_SETTINGS).filter(
-  (key) => key !== "logo_url" && key !== "hero_image"
+  (key) => key !== "logo_url" && key !== "hero_image" && key !== "admin_password_hash"
 );
 
 const seedSettingStmt = db.prepare(
@@ -252,6 +253,18 @@ function getSetting(key) {
   return row ? row.value : "";
 }
 
+function hashPassword(password) {
+  return crypto.createHash("sha256").update("zhaorong-shuyuan:" + password).digest("hex");
+}
+
+function verifyPassword(input) {
+  const storedHash = getSetting("admin_password_hash");
+  if (storedHash) {
+    return hashPassword(input) === storedHash;
+  }
+  return input === ADMIN_PASSWORD;
+}
+
 const IMAGE_EXTS = {
   "image/png": ".png",
   "image/jpeg": ".jpg",
@@ -341,7 +354,7 @@ async function handleApi(req, res, pathname) {
 
   if (req.method === "POST" && pathname === "/api/login") {
     const body = parseBody(await readBody(req));
-    if (body.password !== ADMIN_PASSWORD) {
+    if (!verifyPassword(body.password)) {
       return json(res, 401, { ok: false, error: "密码不正确" });
     }
     const token = crypto.randomBytes(24).toString("hex");
@@ -351,15 +364,35 @@ async function handleApi(req, res, pathname) {
 
   if (req.method === "GET" && pathname === "/api/settings/public") {
     const rows = db.prepare("SELECT key, value FROM site_settings").all();
-    const settings = Object.fromEntries(rows.map((r) => [r.key, r.value]));
+    const settings = Object.fromEntries(
+      rows.filter((r) => r.key !== "admin_password_hash").map((r) => [r.key, r.value])
+    );
     return json(res, 200, { ok: true, settings });
   }
 
   if (req.method === "GET" && pathname === "/api/settings") {
     if (!requireToken(req, res)) return;
     const rows = db.prepare("SELECT key, value FROM site_settings").all();
-    const settings = Object.fromEntries(rows.map((r) => [r.key, r.value]));
+    const settings = Object.fromEntries(
+      rows.filter((r) => r.key !== "admin_password_hash").map((r) => [r.key, r.value])
+    );
     return json(res, 200, { ok: true, settings });
+  }
+
+  if (req.method === "POST" && pathname === "/api/admin-password") {
+    if (!requireToken(req, res)) return;
+    const body = parseBody(await readBody(req));
+    const current = cleanText(body.current, 100);
+    const next = cleanText(body.next, 100);
+    if (!verifyPassword(current)) {
+      return json(res, 400, { ok: false, error: "当前密码不正确" });
+    }
+    if (next.length < 6) {
+      return json(res, 400, { ok: false, error: "新密码至少 6 位" });
+    }
+    upsertSettingStmt.run("admin_password_hash", hashPassword(next));
+    tokens.clear();
+    return json(res, 200, { ok: true });
   }
 
   if (req.method === "PUT" && pathname === "/api/settings") {

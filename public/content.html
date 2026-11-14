@@ -236,6 +236,27 @@
             <button class="btn btn-primary" type="submit">保存修改</button>
           </div>
         </form>
+        <div class="password-panel">
+          <h3 class="form-subhead">安全设置 · 修改管理密码</h3>
+          <div class="form-grid">
+            <div class="field">
+              <label>当前密码</label>
+              <input id="currentPassword" type="password" autocomplete="current-password">
+            </div>
+            <div class="field">
+              <label>新密码（至少 6 位）</label>
+              <input id="newPassword" type="password" autocomplete="new-password">
+            </div>
+            <div class="field">
+              <label>确认新密码</label>
+              <input id="confirmPassword" type="password" autocomplete="new-password">
+            </div>
+            <div class="field">
+              <label>&nbsp;</label>
+              <button class="btn btn-ghost" id="changePasswordBtn" type="button">修改密码</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>

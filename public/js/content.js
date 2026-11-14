@@ -21,6 +21,11 @@ const newItemTitle = document.getElementById("newItemTitle");
 const newItemDesc = document.getElementById("newItemDesc");
 const newItemIcon = document.getElementById("newItemIcon");
 
+const currentPassword = document.getElementById("currentPassword");
+const newPassword = document.getElementById("newPassword");
+const confirmPassword = document.getElementById("confirmPassword");
+const changePasswordBtn = document.getElementById("changePasswordBtn");
+
 const TOKEN_KEY = "fengshui_admin_token";
 const IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp", "image/gif", "image/x-icon"];
 
@@ -288,6 +293,38 @@ addItemBtn.addEventListener("click", async () => {
     newItemIcon.value = "";
     showToast("项目已添加");
     loadItems();
+  } catch (err) {
+    showToast(err.message);
+  }
+});
+
+changePasswordBtn.addEventListener("click", async () => {
+  const current = currentPassword.value.trim();
+  const next = newPassword.value;
+  if (!current || !next || !confirmPassword.value) {
+    showToast("请填写完整密码信息");
+    return;
+  }
+  if (next.length < 6) {
+    showToast("新密码至少 6 位");
+    return;
+  }
+  if (next !== confirmPassword.value) {
+    showToast("两次输入的新密码不一致");
+    return;
+  }
+  try {
+    await request("/api/admin-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ current, next }),
+    });
+    localStorage.removeItem(TOKEN_KEY);
+    currentPassword.value = "";
+    newPassword.value = "";
+    confirmPassword.value = "";
+    showToast("密码已修改，请重新登录");
+    setTimeout(showLogin, 900);
   } catch (err) {
     showToast(err.message);
   }
